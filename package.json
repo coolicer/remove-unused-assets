@@ -19,8 +19,13 @@
     "cleanup",
     "static-analysis"
   ],
-  "author": "",
+  "author": "coolicer",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github-second:coolicer/remove-unused-assets.git",
+    "web": "https://github.com/coolicer/remove-unused-assets"
+  },
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^9.4.0",
