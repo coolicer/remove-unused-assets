@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const { spawn } = require('child_process');
+
+// Get the directory where the script is located
+const SCRIPT_DIR = path.dirname(__filename);
+
+// Get the project root directory (parent of bin)
+const PROJECT_ROOT = path.dirname(SCRIPT_DIR);
+
+// Get the path to the CLI tool
+const CLI_PATH = path.join(PROJECT_ROOT, 'dist/cli/index.js');
+
+// Run the actual CLI tool
+require(CLI_PATH); 
