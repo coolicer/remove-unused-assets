@@ -8,7 +8,7 @@ import { analyzeUnusedAssets } from '../analyzers/asset-analyzer';
 const program = new Command();
 
 program
-  .version('1.0.4')
+  .version('1.0.5')
   .description('分析项目中未使用的静态资源')
   .option('-d, --dir <directory>', '指定要分析的目录', '.')
   .option(

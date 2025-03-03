@@ -1,6 +1,6 @@
 {
   "name": "remove-unused-assets",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "一个用于分析未使用静态资源的工具",
   "main": "dist/index.js",
   "bin": {
