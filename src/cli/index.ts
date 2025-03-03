@@ -8,15 +8,16 @@ import { analyzeUnusedAssets } from '../analyzers/asset-analyzer';
 const program = new Command();
 
 program
-  .version('1.0.0')
+  .version('1.0.2')
   .description('分析项目中未使用的静态资源')
   .option('-d, --dir <directory>', '指定要分析的目录', '.')
   .option(
     '-p, --pattern <pattern>',
     '静态资源文件匹配模式',
-    '**/*.{png,jpg,jpeg,gif,svg,ico}'
+    '{static,assets,**}/*.{png,jpg,jpeg,gif,svg,ico}'
   )
-  .option('-o, --output <file>', '输出结果文件名', 'unused-assets.txt')
+  .option('-o, --output <file>', '输出结果文件名', './unused-assets.txt')
+  .option('-w, --wechat', '指定为微信小程序项目', false)
   .parse(process.argv);
 
 const options = program.opts();
@@ -29,6 +30,7 @@ async function main(): Promise<void> {
       directory: options.dir,
       pattern: options.pattern,
       outputFile: options.output,
+      isWechatMiniProgram: options.wechat,
     });
 
     spinner.succeed('分析完成！');

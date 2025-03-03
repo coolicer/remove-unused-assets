@@ -1,0 +1,30 @@
+# 源代码
+src/
+
+# 测试文件
+__tests__/
+*.test.ts
+*.spec.ts
+jest.config.js
+
+# 开发工具配置
+.vscode/
+.idea/
+.editorconfig
+.eslintrc.js
+.eslintignore
+tsconfig.json
+
+# Git相关
+.git/
+.gitignore
+
+# 示例和文档
+example/
+docs/
+
+# 其他
+*.log
+node_modules/
+coverage/
+.DS_Store 

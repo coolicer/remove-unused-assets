@@ -1,10 +1,10 @@
 {
   "name": "remove-unused-assets",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "一个用于分析未使用静态资源的工具",
   "main": "dist/index.js",
   "bin": {
-    "remove-unused-assets": "./dist/cli/index.js"
+    "remove-unused-assets": "dist/cli/index.js"
   },
   "scripts": {
     "build": "tsc",

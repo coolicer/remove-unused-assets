@@ -8,6 +8,7 @@ interface AnalyzeOptions {
   directory: string;
   pattern: string;
   outputFile: string;
+  isWechatMiniProgram?: boolean;
 }
 
 /**
@@ -24,7 +25,7 @@ export async function analyzeUnusedAssets(
   const assetFiles = await findAssetFiles(directory, pattern);
 
   // 查找所有可能引用资源的文件（代码文件）
-  const sourceFiles = await findSourceFiles(directory);
+  const sourceFiles = await findSourceFiles(directory, options.isWechatMiniProgram);
 
   // 查找每个资源在源代码中的引用
   const unusedAssets = await findUnusedAssets(
@@ -58,13 +59,22 @@ async function findAssetFiles(
 }
 
 /**
- * 查找所有可能引用资源的源代码文件
+ * 查找所有可能引用资源的文件（代码文件）
  */
-async function findSourceFiles(directory: string): Promise<string[]> {
+async function findSourceFiles(directory: string, isWechatMiniProgram?: boolean): Promise<string[]> {
   return new Promise((resolve, reject) => {
     // 查找常见的代码文件类型
-    const pattern = '**/*.{js,jsx,ts,tsx,vue,html,css,scss,sass,less}';
-    glob(pattern, { cwd: directory, absolute: true }, (err: Error | null, files: string[]) => {
+    const pattern = '**/*.{js,jsx,ts,tsx,vue,html,css,scss,sass,less,wxml,wxss,json}';
+    
+    // 如果是微信小程序，确保包含pages目录下的文件
+    const options = { 
+      cwd: directory, 
+      absolute: true,
+      // 微信小程序模式下，确保不忽略pages目录
+      ignore: isWechatMiniProgram ? [] : ['**/node_modules/**']
+    };
+    
+    glob(pattern, options, (err: Error | null, files: string[]) => {
       if (err) {
         reject(err);
       } else {
